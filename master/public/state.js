@@ -107,25 +107,13 @@
 
 	function State(options){
 		options = options || {};
-		this.width = options.width || 7;
-		this.height = options.height || 6;
-		this.winning = options.winning || 4;
+		this.width = options.width || 7;		//default board width
+		this.height = options.height || 6;		//default board height
+		this.winning = options.winning || 4;	//how many connections you need to win
 		this.lastMove = undefined;
-		this.lastMovePlayer = undefined;
-		this.nextMovePlayer = 'x';
-		this.board = blankBoard(this.width, this.height);
-	}
-
-	State.load = function(ld){
-		var ret = new State();
-		ret.width = ld.width;
-		ret.height = ld.height;
-		ret.winning = ld.winning;
-		ret.lastMove = ld.lastMove;
-		ret.lastMovePlayer = ld.lastMovePlayer;
-		ret.nextMovePlayer = ld.nextMovePlayer;
-		ret.board = ld.board;
-		return ret;
+		this.lastMovePlayer = undefined;		//'x' or 'o': who moved last
+		this.nextMovePlayer = 'x';				//'x' or 'o': who moves next
+		this.board = blankBoard(this.width, this.height);	//initialize with a blank board.
 	}
 
 	//Returns a state after a move has been made.
@@ -160,7 +148,7 @@
 	}
 
 	//Returns an array of possible successor states.
-	//nextStates() => [State, State, State]
+	//nextStates() => [State, State, State...]
 	State.prototype.nextStates = function(){
 		var self = this;
 		return this.legalMoves().map(function(move){
@@ -168,11 +156,15 @@
 		});
 	}
 
+	//Returns the number of lines for side 'type'
+	//of length 'length'
+	//numLines(Int, Str) => Int
 	State.prototype.numLines = function(length, type){
 		return numLines(this.board, length, type);
 	}
 
-	//someoneWon => Bool
+	//someoneWon() => Bool
+	//Returns whether someone one.
 	State.prototype.someoneWon = function(){
 		var self = this;
 		return ['x','o'].some(function(side){
@@ -190,6 +182,18 @@
 
 	State.prototype.isDraw = function(){
 		return !this.someoneWon() && this.legalMoves().length == 0;
+	}
+
+	State.load = function(ld){
+		var ret = new State();
+		ret.width = ld.width;
+		ret.height = ld.height;
+		ret.winning = ld.winning;
+		ret.lastMove = ld.lastMove;
+		ret.lastMovePlayer = ld.lastMovePlayer;
+		ret.nextMovePlayer = ld.nextMovePlayer;
+		ret.board = ld.board;
+		return ret;
 	}
 
 

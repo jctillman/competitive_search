@@ -19,8 +19,8 @@ describe("Testing some basic functionality for the heuristics", function(){
 	it("Returns a number after being given a state", function(){
 		//Make a new game state
 		var s = new State();
-		expect(typeof (heuristic(s, 'x')) == 'number')
-		expect(typeof (heuristic(s, 'o')) == 'number')
+		expect(typeof (heuristic(s, 'x')) == 'number').to.equal(true);
+		expect(typeof (heuristic(s, 'o')) == 'number').to.equal(true);
 
 	});
 
@@ -31,7 +31,7 @@ describe("Testing some basic functionality for the heuristics", function(){
 			for(var z = 0; z < 7; z++){
 				s = s.move( Math.floor(Math.random() * s.width ) )
 			}
-			expect( -heuristic(s, 'x') == heuristic(s, 'o'));
+			expect( -heuristic(s, 'x') == heuristic(s, 'o')).to.equal(true);;
 		}
 	});
 
@@ -44,9 +44,9 @@ describe("Testing some basic functionality for the heuristics", function(){
 		s = s.move(0)
 		s = s.move(2)
 		var higher = heuristic(s, 'x')
-		expect(typeof lower == 'number')
-		expect(typeof higher == 'number')
-		expect(lower < higher)
+		expect(typeof lower == 'number').to.equal(true);
+		expect(typeof higher == 'number').to.equal(true);
+		expect(lower < higher).to.equal(true);
 	});
 
 	it("It returns a higher score when 'x' has three in a single line, and 'o' has two connected, and one not connected", function(){
@@ -60,9 +60,9 @@ describe("Testing some basic functionality for the heuristics", function(){
 		s = s.move(0)
 		s = s.move(3)
 		var higher = heuristic(s, 'x');
-		expect(typeof lower == 'number')
-		expect(typeof higher == 'number')
-		expect(lower < higher)
+		expect(typeof lower == 'number').to.equal(true);
+		expect(typeof higher == 'number').to.equal(true);
+		expect(lower < higher).to.equal(true);
 	});
 
 	it("It returns a higher score when 'x' has four in a single line, and 'o' has three connected, and one not connected", function(){
@@ -77,9 +77,9 @@ describe("Testing some basic functionality for the heuristics", function(){
 		var lower = heuristic(s, 'x')
 		s = s.move(0)
 		var higher = heuristic(s, 'x');
-		expect(typeof lower == 'number')
-		expect(typeof higher == 'number')
-		expect(lower < higher)
+		expect(typeof lower == 'number').to.equal(true);
+		expect(typeof higher == 'number').to.equal(true);
+		expect(lower < higher).to.equal(true);
 	});
 
 });
@@ -96,8 +96,8 @@ describe('Testing some basic functions in the minimax evaluation function', func
 			}
 			var heuristicValue = heuristic(s, 'x');
 			var minimaxValue = minimax(s, 0, 'x');
-			expect(typeof heuristicValue == 'number')
-			expect(typeof minimaxValue == 'number')
+			expect(typeof heuristicValue == 'number').to.equal(true);
+			expect(typeof minimaxValue == 'number').to.equal(true);
 			expect(heuristicValue == minimaxValue);
 		}
 	});
@@ -118,9 +118,9 @@ describe('Testing some basic functions in the minimax evaluation function', func
 			s = s.move(6)
 			var heuristicValue = heuristic(s, 'x');
 			var minimaxValue = minimax(s, 32, 'x');
-			expect(typeof heuristicValue == 'number')
-			expect(typeof minimaxValue == 'number')
-			expect(heuristicValue == minimaxValue);
+			expect(typeof heuristicValue == 'number').to.equal(true);
+			expect(typeof minimaxValue == 'number').to.equal(true);
+			expect(heuristicValue == minimaxValue).to.equal(true);;
 		}
 	});
 
@@ -129,7 +129,7 @@ describe('Testing some basic functions in the minimax evaluation function', func
 		for(var x = 0; x < 10; x++){
 			var s = new State();
 			var val = minimax(s, Math.floor(Math.random()*2), 'x');
-			expect(typeof val == 'number');
+			expect(typeof val == 'number').to.equal(true);;
 		}
 
 

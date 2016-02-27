@@ -1,5 +1,56 @@
 (function(){
 
+
+
+	/*
+    function makeMove(state, depth, alpha, beta, maximizingPlayer)
+
+    Input:
+    state: A state (see state.js)
+    
+    Output: Returns an integer indicating the location
+    to drop the piece.
+
+    This function is the only function called
+    by others.html and self.html.  Only changes to this
+    (and to functions called by it) will influence
+    the behavior of your agent.
+	*/
+	var DEPTH = 6;
+	var makeMove = function(state){
+
+		//To get all legal moves.
+		//This will be useful.
+		var allLegalMoves = state.legalMoves();
+
+		// To get a successor state following a move,
+		// do the following.  This will be useful.
+		// var successor = state.move(someLegalMove)
+
+		//To get the side which is moving (either
+		//an 'x' or an 'o', do this.
+		var playerMoving = state.nextMovePlayer;
+
+		//You'll want to change this...		
+		//Currently moves randomly.
+		return allLegalMoves[Math.floor(Math.random()*allLegalMoves.length)];
+	}
+
+
+
+	//Bonus function.  Might be useful.
+	//Takes an array and a function, and returns 
+	//the element of the array which gives the highest
+	//value when fed into the function.
+	var max = function(arr, func){
+		return arr.reduce(function(tuple, cur, index){
+			var value = func(cur)
+			return (tuple.value >= value) ? tuple : {element: cur, value: value};
+		},{element: arr[0], value: func(arr[0])}).element;
+	}
+
+
+
 	/*
 	function heuristic(state, maximizingPlayer)
 
@@ -25,7 +76,6 @@
 	*/
 	var heuristic = function(state, maximizingPlayer){
 		//Need some code here.
-		return 0;
 	}
 
 
@@ -44,13 +94,20 @@
 	
 	You'll need to use state.nextStates(), which returns 
 	a list of possible successor states to the state passed in
-	Using that, the heuristic function defined above, recursive calls,
-	and standard JS should be sufficient.
+	as an argument.
+	
+	You'll also probably need to use state.nextMovePlayer,
+	which returns whether the next moving player is 'x' or 'o',
+	to see if you are maximizing or minimizing.
+
+	That should be about all the API from State that you need to
+	know, I believe.
 	*/
 	var minimax = function(state, depth, maximizingPlayer){
-		//need some code here.
-		return 0;
+		var possibleStates = state.nextStates();
+		var currentPlayer = state.nextMovePlayer;
 	}
+
 
 
 	var minimaxAlphaBetaWrapper = function(state, depth, maximizingPlayer){
@@ -74,45 +131,6 @@
 		}
 		return minimaxAB(state, depth, -10000,10000)
 	}	
-
-	//Bonus function.  Might be useful.
-	//Takes an array and a function, and returns 
-	//the element of the array which gives the highest
-	//value when fed into the function.
-	var max = function(arr, func){
-		return arr.reduce(function(tuple, cur, index){
-			var value = func(cur)
-			return (tuple.value >= value) ? tuple : {element: cur, value: value};
-		},{element: arr[0], value: func(arr[0])}).element;
-	}
-
-	/*
-    function makeMove(state, depth, alpha, beta, maximizingPlayer)
-
-    Input:
-    state: A state (see state.js)
-    
-    Output: Returns an integer indicating the location
-    to drop the piece.
-
-    This should be the piece the next moving
-    player wants to move, which is indicated by
-    state.nextMovePlayer, which will be 'x' or 'o'
-	*/
-	var DEPTH = 6;
-	var makeMove = function(state){
-		//This might be useful
-		var allLegalMoves = state.legalMoves();
-		//Maaaybe this might be useful.
-		var nextStates = state.nextStates();
-		// To get a successor state following a move,
-		// do the following.
-		// var successor = state.move(someLegalMove)
-		//
-		// That will be useful.
-		return allLegalMoves[Math.floor(Math.random()*allLegalMoves.length)];
-	}
-
 
 
 
