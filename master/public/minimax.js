@@ -15,6 +15,10 @@
     by others.html and self.html.  Only changes to this
     (and to functions called by it) will influence
     the behavior of your agent.
+
+    Note that minimax_specs.js doesn't test this at all.
+    After all, it makes perfectly legal moves just with
+    the code below...
 	*/
 	var DEPTH = 6;
 	var makeMove = function(state){
@@ -125,6 +129,8 @@
 	    maximizingPlayer: 'x' or 'o'
 	    
 	    Output: Returns a number evaluating the state.
+
+	    minimax_specs.js doesn't test this at all either.
 		*/
 		var minimaxAB = function(state, depth, alpha, beta){
 			//Need some code here.
