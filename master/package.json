@@ -1,0 +1,18 @@
+{
+  "name": "master",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node remote_server.js"
+  },
+  "author": "James Tillman <James.Tillman.7@gmail.com> (https://github.com/jctillman)",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "http-proxy": "^1.13.2"
+  }
+}
