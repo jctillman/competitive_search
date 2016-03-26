@@ -1,0 +1,19 @@
+{
+  "name": "master",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha public/minimax_specs.js",
+    "start": "node server.js"
+  },
+  "author": "James Tillman <James.Tillman.7@gmail.com> (https://github.com/jctillman)",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "http-proxy": "^1.13.2",
+    "mocha": "^2.4.5"
+  }
+}

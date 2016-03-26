@@ -1,0 +1,86 @@
+<html>
+<head>
+<link rel="stylesheet" href="board.css"></link>
+</head>
+
+<div class="outer">
+	<div id="decide">
+		<input type="button" id='x' value="Play as X"></input>
+		<input type="button" id='o' value="Play as O"></input>
+	</div>
+	<div id="board"></div>
+	<div id="move"></div>
+</div>
+
+<script src="finished/getset.js"></script>
+<script src="finished/utils.js"></script>
+<script src="finished/stateutils.js"></script>
+<script src="finished/age.js"></script>
+<script src="finished/state.js"></script>
+<script src="finished/playingfield.js"></script>
+<script src="finished/fieldsocket.js"></script>
+<script src="finished/render.js"></script>
+<script src="minimax.js"></script>
+
+
+<script>
+
+var State = get('state');
+var render = get('render');
+var utils = get('utils');
+var makeMove = get('makeMove');
+
+
+var players = ["x","o"]
+players.forEach(function(player){
+	document.getElementById(player).onclick = function(){
+		playGameAs(player)
+	}
+})
+
+var playGameAs = function(humanPlayer){
+
+	function checkIfOver(){
+		var possibleMoves = state.nextStates().length;
+		if (possibleMoves == 0){
+			move.innerHTML = state.winner() + ' won the game!'
+			return true;
+		}
+		return false;
+	}
+
+	var humanMove = function(moveSpot){
+		if (checkIfOver()){return;}
+		state = state.move(moveSpot)
+		renderState(false);
+		if(checkIfOver()){return false;}
+		utils.dly(computerMove)
+	}
+
+	var computerMove = function(){
+		var move = makeMove(state);
+		state = state.move(move);
+		renderState(true);
+		if (checkIfOver()){return;}
+	}
+
+	var renderState = function(canMove){
+		var isHumanMove = state.nextMovePlayer == humanPlayer
+		move.innerHTML = isHumanMove ? "Your turn." : "The computer is thinking."
+		render(state, renderFrame, canMove, humanMove, humanPlayer)
+	}
+
+	var state = new State();
+	var renderFrame = document.getElementById('board')
+	var move = document.getElementById('move')
+
+	if(humanPlayer == 'x'){
+		renderState(true);
+	}else{
+		renderState(false);
+		utils.dly(computerMove);
+	}
+}
+
+</script>
+</html>
