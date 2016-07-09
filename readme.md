@@ -14,13 +14,9 @@ The contents of this introduction take for granted that you've paid at least a l
 
 2. There's only one file which you'll editing, which is "minimax.js."  BEFORE starting to edit it, finish reading these instructions.
  
-3. To test your changes to minimax.js, "npm test."
+3. To test your changes to minimax.js, "npm test."  IMPORTANT NOTE: Passing the tests does not necessarily mean you've successfully written an intelligent agent.  You can pass the tests without actually using the minimax algorithm.  To test that your agent is really playing well, you'll need to play against your agent yourself.
 
-IMPORTANT NOTE: Passing the tests does not necessarily mean you've successfully written an intelligent agent.  You can pass the tests without actually using the minimax algorithm.  To test that your agent is really playing well, you'll need to play against your agent yourself.
-
-4. To play against the machine, run "npm start."  This will start up a server; use a browser to go to localhost:8888 to play against the agent you've written in minimax.js.
-
-If you start up the server before you've started writing your agent, you'll note that you're playing against a randomly-playing (i.e., extremely stupid) agent.
+4. To play against the machine, run "npm start."  This will start up a server; use a browser to go to localhost:8888 to play against the agent you've written in minimax.js.  If you start up the server before you've started writing your agent, you'll note that you're playing against a randomly-playing (i.e., extremely stupid) agent.
 
 ## Advice
 
