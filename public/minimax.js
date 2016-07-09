@@ -54,7 +54,8 @@
 		var depth = 3
 		return max(allLegalMoves, function(move){
 			var potentialState = state.move(move)
-			return minimax(potentialState, playerMoving, depth)
+			return minimax(potentialState, depth, playerMoving)
+			//return minimaxAlphaBetaWrapper(potentialState, depth, playerMoving)
 		});
 		// The guts of the make-move function.
 		// The function max(arr, func) returns the element
@@ -102,11 +103,11 @@
 		var minimizingPlayer = (maximizingPlayer == 'x') ? 'o' : 'x';
 		//This is how you can retrieve the minimizing player.
 
-		var linesOfLengthTwoForX = state.numLines(2, 'x')
-		//An example 
+        var linesOfLengthTwoForX = state.numLines(2, 'x')
+        //An example 
 
-		return Math.random();
-		//Obviously you need to return something else.
+        //Your code here.  Don't return random, obviously.
+		return Math.random()
 	}
 
 
@@ -163,8 +164,8 @@
 	    does; this is why it is a very high value to start with.
 		*/
 		var minimaxAB = function(state, depth, alpha, beta){
-			//Need some code here.
 		}
+
 		return minimaxAB(state, depth, -100000,100000)
 	}	
 
