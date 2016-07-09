@@ -160,8 +160,11 @@ describe('Testing some basic functions in the minimax evaluation function', func
 	   it does need to call itself recursively. */
 	it("It returns values of some kind when there's depth involved", function(){
 
-		for(var x = 0; x < 10; x++){
+		for(var x = 0; x < 3; x++){
 			var s = new State();
+			for(var m = 0; m < 6; m++){
+				s = s.move(Math.floor(Math.random()*7));
+			}
 			var val = minimax(s, Math.floor(Math.random()*2), 'x');
 			expect(typeof val == 'number').to.equal(true);;
 		}
