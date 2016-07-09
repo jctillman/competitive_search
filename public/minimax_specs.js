@@ -6,14 +6,13 @@ var minimax = minimaxLib.minimax;
 var makeMove = minimaxLib.makeMove;
 var heuristic = minimaxLib.heuristic;
 
-/* The first thing that you'll need to do is write some kind of heuristic function,
-   which will be used by your minimax program when there is too much depth to 
-   play all the way to the end of the game.
-	
-   Generally speaking, a heuristic takes as input some particular kind of game state,
-   and outputs a number indicating how good / bad that state is.  More specifically, 
-   the heuristic for a zero-sum game -- that is, a game where any gain by one side is loss
-   for the other side -- will return a higher positive number the better the game is
+/* 
+   A heuristic takes as input some particular game state.
+   and outputs a number indicating how good / bad that state is.
+
+   More specifically, the heuristic for a zero-sum game -- that is,
+   a game where any gain by one side is loss for the other side --
+   will return a higher positive number the better the game is
    for the maximizing player, and a lower negative number the better the game
    is for the minimizing player.
 
@@ -21,20 +20,13 @@ var heuristic = minimaxLib.heuristic;
    1. An instance of the class "State" -- that is, a description of the current state of the board.
    2. The current player who is the maximizing player -- the one who is currently
       trying to maximize the score, unlike the other who is trying to minimize.
-      This will either be an 'x' string or an 'o' string.  Assume that 'x'
-      is the maximizing player (if the position is advantageous to them, the number
-      returned should be positive) and 'o' is the minimizing player (the opposite)
+      This will either be an 'x' string or an 'o' string.
 
       It will return a positive or negative number. 
  */
-
-
 describe("Testing some basic functionality for the heuristics", function(){
 
-	/*First off, this function should return some kind of number.
-      As stated above, this number should be higher the better the state 
-      is for the maximizing player (x) and lower the better the state
-      is for the minimizing player (0). */
+	/*First off, this function should return some kind of number.*/
 	it("Returns a number after being given a state", function(){
 		var s = new State();
 		expect(typeof (heuristic(s, 'x')) == 'number').to.equal(true);
@@ -44,9 +36,7 @@ describe("Testing some basic functionality for the heuristics", function(){
 	/* Second, remember that the "maximizing player" and the "minimizing player"
 	   are only maximizing and minimizing players by convention.  They are a 
 	   feature of the map, and not the territory; of how we're looking at 
-	   the game, and not the game itself.  We should be able to switch the two
-	   without harming our analysis of the game; it should just inverse 
-	   our values.
+	   the game, and not the game itself.
 
 	   So if we switch the players, we should get exactly the same value, except
 	   multiplied by -1.*/ 
@@ -54,7 +44,6 @@ describe("Testing some basic functionality for the heuristics", function(){
 	it("Returns the negative of the value for one player when maximizing player is switched", function(){
 		for(var x = 0; x < 100; x++){
 			var s = new State();
-			//Make some random moves
 			for(var z = 0; z < 7; z++){
 				s = s.move( Math.floor(Math.random() * s.width ) )
 			}
@@ -64,7 +53,7 @@ describe("Testing some basic functionality for the heuristics", function(){
 
 	/* The rest of these all are basically checking to see if 
 	   the program returns some kind of reasonable values in cases when, although
-	   there are equal numbers of pieces on the board, 'x' has more clumped 
+	   there are equal numbers of pieces on the board, 'x' has more in a line 
 	   together than 'o' does. */
 	it("It returns a higher score when 'x' has two in a single line, and 'o' has two disconnected", function(){
 		//Make a new game state
@@ -113,6 +102,9 @@ describe("Testing some basic functionality for the heuristics", function(){
 	});
 
 });
+
+
+
 
 describe('Testing some basic functions in the minimax evaluation function', function(){
 
