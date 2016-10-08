@@ -4,13 +4,15 @@
 	 *
 
 	The function "makeMove" is already written for you.
+	You do not need to modify it, but you should read it.
+
 	It will choose moves intelligently once minimax,
 	which it invokes, evaluates different board-states
 	intelligently.  It is the only function invoked when
 	you play against the computer after starting up
 	the server.
 
-	However, even though this function is finished
+	Even though this function is finished
 	you should read it to understand what is going on
 	within it, and so that you can understand the
 	API for the state object.
@@ -35,9 +37,8 @@
 		var allLegalMoves = state.legalMoves();
 		// state.legalMoves returns an array of integer values,
 		// which indicate the locations (0 through 6)
-		// where one can currently legally drop 
-		// a connect four piece.  (Obviously, if a column
-		// is full, it will not return the index of that
+		// where one can currently legally drop a piece.
+		// (If a column is full, it will not return the index of that
 		// column.)
 
 		var newState = state.move(allLegalMoves[0]);
@@ -52,25 +53,22 @@
 		// returns a new one.
 
 		var depth = 3
+		// The following is the guts of the make-move function.
+		// The function max(arr, func) returns the element
+		// from the array "arr" which has the greatest value
+		// according to the function "func"
 		return max(allLegalMoves, function(move){
 			var potentialState = state.move(move)
-			//Note that the choice of which player is the maximizing player
-			//is *arbitrary* but should remain constant throughout
-			//the time that the minimax algorithm runs.
-			//
-			//Thus, in the below, 'x' has been chosen as the 
+			//In the below, the current player has been chosen as the 
 			//maximizing player and passed into the minimax function.
+			//
 			//The maximizing player is the only variable passed on unchanged 
 			//when the minimax function invokes itself recursively.
-			return minimax(potentialState, depth, 'x')
+			//
+			return minimax(potentialState, depth, playerMoving)
 			//return minimaxAlphaBetaWrapper(potentialState, depth, playerMoving)
 		});
-		// The guts of the make-move function.
-		// The function max(arr, func) returns the element
-		// from the array which gives the highest value
-		// according to the function passed into it.
-		// 
-		// So this function looks
+
 	}
 
 	/*Max: Ancillary function.*/
