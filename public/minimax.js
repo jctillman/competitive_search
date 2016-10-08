@@ -54,7 +54,15 @@
 		var depth = 3
 		return max(allLegalMoves, function(move){
 			var potentialState = state.move(move)
-			return minimax(potentialState, depth, playerMoving)
+			//Note that the choice of which player is the maximizing player
+			//is *arbitrary* but should remain constant throughout
+			//the time that the minimax algorithm runs.
+			//
+			//Thus, in the below, 'x' has been chosen as the 
+			//maximizing player and passed into the minimax function.
+			//The maximizing player is the only variable passed on unchanged 
+			//when the minimax function invokes itself recursively.
+			return minimax(potentialState, depth, 'x')
 			//return minimaxAlphaBetaWrapper(potentialState, depth, playerMoving)
 		});
 		// The guts of the make-move function.
