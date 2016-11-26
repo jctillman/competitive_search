@@ -1,0 +1,40 @@
+#board td{
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	border: 1px solid black;
+	border-radius: 50px;
+}
+
+#board tr{
+	text-align: center;
+}
+
+#board {
+	display: inline-block;
+}
+
+#move {
+	width: 30%;
+	margin: 0 auto;
+}
+
+.outer {
+	position: relative;
+	width: 100%;
+	text-align: center;
+}
+
+.leaderboard {
+	display: inline-block;
+	padding: 10px;
+	margin: 20px;
+}
+
+.leaderboard td{
+	width: 200px;
+	text-align: center;
+}
+
+.leaderboard tr:nth-child(even) {background: #CCC}
+.leaderboard tr:nth-child(odd) {background: #FFF}
