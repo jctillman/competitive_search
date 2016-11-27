@@ -18,7 +18,7 @@ export default class Cell extends React.Component {
 		return (
 			<td 
 				style={{backgroundColor:color}}
-				onClick={() => (move(colIndex))}>o
+				onClick={() => (move(colIndex))}>
 			</td>
 			)
 	}

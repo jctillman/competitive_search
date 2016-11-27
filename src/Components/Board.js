@@ -3,7 +3,6 @@ import Cell from './Cell'
 import State from '../game_logic/state'
 const makeMove = require('../minimax.js').makeMove;
 
-
 export default class Board extends React.Component{
 	
 	constructor(props){
@@ -12,12 +11,12 @@ export default class Board extends React.Component{
 			boardstate: new State()
 		};
 		this.move = this.move.bind(this);
-		console.log(props)
 	}
 
 	moveIfComputerMove(){
-		if (this.state.boardstate.nextMovePlayer !== this.props.humanPlayerIs &&
-			this.props.humanPlayerIs !== null ){
+		if (this.state.boardstate.nextMovePlayer !== this.props.humanPlayerIs
+			&& this.props.humanPlayerIs !== null 
+			&& this.state.boardstate.legalMoves().length !== 0 ){
 			var move = makeMove(this.state.boardstate);
 			this.setState({boardstate: this.state.boardstate.move(move)});
 		}
@@ -38,7 +37,7 @@ export default class Board extends React.Component{
 	render(){
 		return (
 			<div>
-				<table>
+				<table id="board">
 					<tbody>
 					{
 						this.state.boardstate.board.map( (row,i) => (
@@ -53,6 +52,17 @@ export default class Board extends React.Component{
 					}
 					</tbody>
 				</table>
+				{
+					this.state.boardstate.legalMoves().length === 0 ?
+
+					<div className="centeredText">
+						<span>{this.state.boardstate.winner()} won!
+						</span>
+						<br />
+						<input type="button" value="Restart" onClick={this.props.restart} />
+					</div>
+					: null
+				}
 			</div>
 		);
 	}

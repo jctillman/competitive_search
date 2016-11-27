@@ -1,3 +1,7 @@
+html, body {
+	width: 100%;
+}
+
 #board td{
 	width: 50px;
 	height: 50px;
@@ -11,7 +15,8 @@
 }
 
 #board {
-	display: inline-block;
+	margin: 0 auto;
+
 }
 
 #move {
@@ -38,3 +43,7 @@
 
 .leaderboard tr:nth-child(even) {background: #CCC}
 .leaderboard tr:nth-child(odd) {background: #FFF}
+
+.centeredText {
+	text-align: center;
+}

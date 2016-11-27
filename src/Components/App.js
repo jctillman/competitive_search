@@ -12,6 +12,7 @@ export default class App extends React.Component{
 			humanPlayerIs: null
 		}
 		this.setPlay = this.setPlay.bind(this);
+		this.restart = this.restart.bind(this);
 
 	}
 
@@ -19,11 +20,15 @@ export default class App extends React.Component{
 		this.setState({playing: playing, humanPlayerIs: playAs});
 	}
 
+	restart(){
+		this.setState({playing: false});
+	}
+
 	render(){
 		return (
-			<div>
+			<div className="outer">
 				{ this.state.playing || <Dashboard setPlay={this.setPlay} /> }
-				{ this.state.playing && <Board humanPlayerIs={this.state.humanPlayerIs}/> }
+				{ this.state.playing && <Board humanPlayerIs={this.state.humanPlayerIs} restart={this.restart}/> }
 			</div>
 		);
 	}
