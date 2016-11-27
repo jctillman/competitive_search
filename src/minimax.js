@@ -1,7 +1,7 @@
 
 /*
  *
-
+ *
 The function "makeMove" is already written for you.
 You do not need to modify it, but you should read it.
 
@@ -11,12 +11,7 @@ intelligently.  It is the only function invoked when
 you play against the computer after starting up
 the server.
 
-Even though this function is finished
-you should read it to understand what is going on
-within it, and so that you can understand the
-API for the state object.
-
-Input: A state, representing the Connect 4 board.
+Input: A state object, representing the Connect 4 board.
 
 Output: Returns an integer indicating the column 
 where the piece will be dropped.
@@ -28,19 +23,14 @@ you are playing against your agent.
 
 const makeMove = function(state){
 
-
+	//Find whose move it is; 'x' or 'o'
 	var playerMoving = state.nextMovePlayer;
-	//To get the side whose turn it (is either
-	//an 'x' or an 'o'), check state.nextMovePlayer
-
-	var allLegalMoves = state.legalMoves();
+	
 	// state.legalMoves returns an array of integer values,
 	// which indicate the locations (0 through 6)
 	// where one can currently legally drop a piece.
-	// (If a column is full, it will not return the index of that
-	// column.)
+	var allLegalMoves = state.legalMoves();
 
-	var newState = state.move(allLegalMoves[0]);
 	// To get a successor state following a move,
 	// just call state.move(someMove).  This returns
 	// the board state after that move has been made.
@@ -50,19 +40,22 @@ const makeMove = function(state){
 	// Note that state is immutable; invoking state.move
 	// does NOT change the original state, but 
 	// returns a new one.
+	var newState = state.move(allLegalMoves[0]);
 
-	var depth = 3
+	
 	// The following is the guts of the make-move function.
 	// The function max(arr, func) returns the element
 	// from the array "arr" which has the greatest value
 	// according to the function "func"
+	var depth = 3
 	return max(allLegalMoves, function(move){
 		var potentialState = state.move(move)
-		//In the below, the current player has been chosen as the 
-		//maximizing player and passed into the minimax function.
+		// In the below, the current player has been chosen as the 
+		// maximizing player and passed into the minimax function.
 		//
-		//The maximizing player is the only variable passed on unchanged 
-		//when the minimax function invokes itself recursively.
+		// IMPORTANT: The maximizing player is the only variable passed on unchanged 
+		// when the minimax function invokes itself recursively.  This is
+		// a common point of confusion.
 		//
 		return minimax(potentialState, depth, playerMoving)
 		//return minimaxAlphaBetaWrapper(potentialState, depth, playerMoving)
@@ -80,7 +73,7 @@ var max = function(arr, func){
 
 /*
 The function "heuristic" is one you must (mostly)
-write
+write.
 
 Input: state, maximizingPlayer.  The state will be 
 a state object.  The maximizingPlayer will be either
@@ -101,15 +94,15 @@ This is useful because, generally speaking, it is better
 to have lots of lines that fewer lines, and much better
 to have longer lines than shorter lines.
 
-You'll need to pass the tests defined in minimax_specs.js.
+You'll want to pass the tests defined in minimax_specs.js.
 */
 var heuristic = function(state, maximizingPlayer){
 
-	var minimizingPlayer = (maximizingPlayer == 'x') ? 'o' : 'x';
 	//This is how you can retrieve the minimizing player.
+    var minimizingPlayer = (maximizingPlayer == 'x') ? 'o' : 'x';
 
+	//An example.
     var linesOfLengthTwoForX = state.numLines(2, 'x')
-    //An example 
 
     //Your code here.  Don't return random, obviously.
 	return Math.random()
@@ -135,9 +128,6 @@ as an argument.
 You'll also probably need to use state.nextMovePlayer,
 which returns whether the next moving player is 'x' or 'o',
 to see if you are maximizing or minimizing.
-
-That should be about all the API from State that you need to
-know, I believe.
 */
 var minimax = function(state, depth, maximizingPlayer){
 	var minimizingPlayer = (state.maximizingPlayer == 'x') ? 'o' : 'x';
