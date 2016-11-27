@@ -17,8 +17,11 @@ export default class Board extends React.Component{
 		if (this.state.boardstate.nextMovePlayer !== this.props.humanPlayerIs
 			&& this.props.humanPlayerIs !== null 
 			&& this.state.boardstate.legalMoves().length !== 0 ){
-			var move = makeMove(this.state.boardstate);
-			this.setState({boardstate: this.state.boardstate.move(move)});
+			var that = this;
+			setTimeout(() => {
+				var move = makeMove(this.state.boardstate);
+				this.setState({boardstate: this.state.boardstate.move(move)});
+			},50);
 		}
 	}
 
