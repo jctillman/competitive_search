@@ -81,7 +81,7 @@ var numLines = function(board, length, type){
 	}
 
 	var timesUpRight = 0;
-	for(var x = board.length-1; x >= length; x--){
+	for(var x = board.length-1; x >= length-1; x--){
 		for(var y = 0; y <= board[0].length - length; y++){
 			var allSame = true;
 			for(var q = 0; q < length; q++){
