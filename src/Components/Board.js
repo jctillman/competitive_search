@@ -1,23 +1,38 @@
 import React from 'react'
 import Cell from './Cell'
 import State from '../game_logic/state'
+import makeMove from '../minimax.js'
 
 
 export default class Board extends React.Component{
 	
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
 		this.state = {
 			boardstate: new State()
 		};
-		this.state.board = this.state.boardstate.board;
-		console.log(this.state);
 		this.move = this.move.bind(this);
+		console.log(props)
+	}
+
+	moveIfComputerMove(){
+		if (this.state.boardstate.nextMovePlayer !== this.props.humanPlayerIs &&
+			this.props.humanPlayerIs !== null ){
+			var move = makeMove(this.state.boardstate);
+			this.setState({boardstate: this.state.boardstate.move(move)});
+		}
+	}
+
+	componentDidMount(){
+		this.moveIfComputerMove();
+	}
+
+	componentDidUpdate(){
+		this.moveIfComputerMove();
 	}
 
 	move(colIndex){
 		this.setState({boardstate: this.state.boardstate.move(colIndex)})
-		console.log(this.state.boardstate.board);
 	}
 
 	render(){

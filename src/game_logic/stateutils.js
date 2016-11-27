@@ -52,7 +52,7 @@ function numCharInLength(arr, length, char){
 
 var numLines = function(board, length, type){
 
-	if (length < 2) throw new Error("Error! Cannot call num-lines on lines less than length of 2.")
+	if (length < 2) throw new Error("Cannot call num-lines on lines < 2 long.")
 
 	var numLines = 0;
 
