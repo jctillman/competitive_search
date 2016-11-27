@@ -1,4 +1,4 @@
-var State = require('./finished/state.js');
+var State = require('./game_logic/state.js');
 var minimaxLib = require('./minimax.js')
 var expect = require('chai').expect;
 

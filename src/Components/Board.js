@@ -1,7 +1,7 @@
 import React from 'react'
 import Cell from './Cell'
 import State from '../game_logic/state'
-import makeMove from '../minimax.js'
+const makeMove = require('../minimax.js').makeMove;
 
 
 export default class Board extends React.Component{

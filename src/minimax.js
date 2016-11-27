@@ -174,4 +174,5 @@ var minimaxAlphaBetaWrapper = function(state, depth, maximizingPlayer){
 	return minimaxAB(state, depth, -100000,100000)
 }	
 
-export default makeMove;
+//export default {makeMove, minimax, heuristic};
+module.exports = {makeMove, minimax, heuristic};

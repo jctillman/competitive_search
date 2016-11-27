@@ -1,7 +1,7 @@
-import stateutils from './stateutils'
+const stateutils = require('./stateutils');
 
 
-export default function State(options){
+function State(options){
 	options = options || {};
 	this.width = options.width || 7;		//default board width
 	this.height = options.height || 6;		//default board height
@@ -91,3 +91,5 @@ State.load = function(ld){
 	ret.board = ld.board;
 	return ret;
 }
+
+module.exports = State;

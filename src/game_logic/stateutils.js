@@ -104,7 +104,7 @@ var numLines = function(board, length, type){
 	return total;
 }
 
-export default {
+module.exports = {
 	blankBoard: blankBoard,
 	copyBoard: copyBoard,
 	dropped: dropped,
