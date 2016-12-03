@@ -12,7 +12,7 @@ The contents of this introduction, and of the workshop in general, take for gran
 
 1. Git clone this repo, cd into it, and "npm install".
 
-2. If you haven't globally installed "webpack-dev-server" then "npm install -g webpack-dev-server".
+2. If you haven't globally installed "webpack" and "webpack-dev-server" then "npm install -g webpack" and "npm install -g webpack-dev-server".
 
 3. If you haven't globally installed "mocha" then "npm install -g mocha".
 
