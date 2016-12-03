@@ -63,7 +63,19 @@ const makeMove = function(state){
 
 }
 
-/*Max: Ancillary function.*/
+/*Max: Ancillary function.
+
+Max returns the value from "arr" which is greatest
+as evaluated by "func".
+
+So for instance, if you passed
+it [1,2,3,-4,-5], and (x) => Math.abs(x), it would return
+-5, because -5 is the greatest element as evaluated by "func".
+
+Similarly, if you passed it ["as","xxxxx","dns"] and 
+(x) => x.length, it would return "xxxxx"
+
+*/
 var max = function(arr, func){
 	return arr.reduce(function(tuple, cur, index){
 		var value = func(cur)
