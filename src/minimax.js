@@ -44,10 +44,10 @@ const makeMove = (state) => {
 	// The function max(arr, func) returns the element
 	// from the array "arr" which has the greatest value
 	// according to the function "func"
-	const depth = 3;
+	const depth = 4;
 
 	let bestMoveIndex = null;
-	let bestMoveValue = -10000;
+	let bestMoveValue = null;
 	allLegalMoves.forEach( (legalMove, i) => {
 
 		const potentialState = state.move(legalMove)
@@ -55,7 +55,7 @@ const makeMove = (state) => {
 		const stateValue = minimax(potentialState, depth, playerMoving);
 		//const stateValue = minimaxAlphaBetaWrapper(potentialState, depth, playerMoving)
 
-		if (stateValue > bestMoveValue){
+		if (stateValue > bestMoveValue || bestMoveValue === null){
 			bestMoveIndex = i;
 			bestMoveValue = stateValue;
 		}
