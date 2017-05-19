@@ -7,7 +7,7 @@ You do not need to modify it, but you should read it.
 
 It will choose moves intelligently once minimax,
 which it invokes, evaluates different board-states
-intelligently.  It is the only function invoked when
+correctly.  It is the ONLY function invoked when
 you play against the computer after starting up
 the server.
 
@@ -16,20 +16,17 @@ Input: A state object, representing the Connect 4 board.
 Output: Returns an integer indicating the column
 where the piece will be dropped.
 
-This is the only function called when
-you are playing against your agent.
-
 */
 
-const makeMove = function(state){
+const makeMove = (state) => {
 
-	//Find whose move it is; 'x' or 'o'
-	var playerMoving = state.nextMovePlayer;
+	// Find whose move it is; 'x' or 'o'
+	const playerMoving = state.nextMovePlayer;
 
 	// state.legalMoves returns an array of integer values,
 	// which indicate the locations (0 through 6)
 	// where one can currently legally drop a piece.
-	var allLegalMoves = state.legalMoves();
+	const allLegalMoves = state.legalMoves();
 
 	// To get a successor state following a move,
 	// just call state.move(someMove).  This returns
@@ -40,48 +37,35 @@ const makeMove = function(state){
 	// Note that state is immutable; invoking state.move
 	// does NOT change the original state, but
 	// returns a new one.
-	var newState = state.move(allLegalMoves[0]);
+	const newState = state.move(allLegalMoves[0]);
 
 
 	// The following is the guts of the make-move function.
 	// The function max(arr, func) returns the element
 	// from the array "arr" which has the greatest value
 	// according to the function "func"
-	var depth = 3
-	return max(allLegalMoves, function(move){
-		var potentialState = state.move(move)
-		// In the below, the current player has been chosen as the
-		// maximizing player and passed into the minimax function.
-		//
-		// IMPORTANT: The maximizing player is the only variable passed on unchanged
-		// when the minimax function invokes itself recursively.  This is
-		// a common point of confusion.
-		//
-		return minimax(potentialState, depth, playerMoving)
-		//return minimaxAlphaBetaWrapper(potentialState, depth, playerMoving)
+	const depth = 3;
+
+	let bestMoveIndex = null;
+	let bestMoveValue = -10000;
+	allLegalMoves.forEach( (legalMove, i) => {
+
+		const potentialState = state.move(legalMove)
+
+		const stateValue = minimax(potentialState, depth, playerMoving);
+		//const stateValue = minimaxAlphaBetaWrapper(potentialState, depth, playerMoving)
+
+		if (stateValue > bestMoveValue){
+			bestMoveIndex = i;
+			bestMoveValue = stateValue;
+		}
+
 	});
+	return allLegalMoves[bestMoveIndex]
 
 }
 
-/*Max: Ancillary function.
 
-Max returns the value from "arr" which is greatest
-as evaluated by "func".
-
-So for instance, if you passed
-it [1,2,3,-4,-5], and (x) => Math.abs(x), it would return
--5, because -5 is the greatest element as evaluated by "func".
-
-Similarly, if you passed it ["as","xxxxx","dns"] and
-(x) => x.length, it would return "xxxxx"
-
-*/
-var max = function(arr, func){
-	return arr.reduce(function(tuple, cur, index){
-		var value = func(cur)
-		return (tuple.value >= value) ? tuple : {element: cur, value: value};
-	},{element: arr[0], value: func(arr[0])}).element;
-}
 
 /*
 The function "heuristic" is one you must (mostly)
@@ -108,13 +92,13 @@ to have longer lines than shorter lines.
 
 You'll want to pass the tests defined in minimax_specs.js.
 */
-var heuristic = function(state, maximizingPlayer){
+const heuristic = (state, maximizingPlayer) => {
 
 	//This is how you can retrieve the minimizing player.
-    var minimizingPlayer = (maximizingPlayer == 'x') ? 'o' : 'x';
+    const minimizingPlayer = (maximizingPlayer == 'x') ? 'o' : 'x';
 
 	//An example.
-    var linesOfLengthTwoForX = state.numLines(2, 'x')
+    const linesOfLengthTwoForX = state.numLines(2, 'x')
 
     //Your code here.  Don't return random, obviously.
 	return Math.random()
@@ -141,7 +125,7 @@ You'll also probably need to use state.nextMovePlayer,
 which returns whether the next moving player is 'x' or 'o',
 to see if you are maximizing or minimizing.
 */
-var minimax = function(state, depth, maximizingPlayer){
+const minimax = (state, depth, maximizingPlayer) => {
 	var minimizingPlayer = (maximizingPlayer == 'x') ? 'o' : 'x';
 	var possibleStates = state.nextStates();
 	var currentPlayer = state.nextMovePlayer;
@@ -155,7 +139,7 @@ var minimax = function(state, depth, maximizingPlayer){
    unless you fill in minimaxAB within it.
 
    It is called with the same values with which minimax itself is called.*/
-var minimaxAlphaBetaWrapper = function(state, depth, maximizingPlayer){
+const minimaxAlphaBetaWrapper = (state, depth, maximizingPlayer) => {
 
     /*
     You will need to write minimaxAB for the extra credit.
@@ -170,10 +154,10 @@ var minimaxAlphaBetaWrapper = function(state, depth, maximizingPlayer){
     player, if they play well, no matter what the maximizing player
     does; this is why it is a very high value to start with.
 	*/
-	var minimaxAB = function(state, depth, alpha, beta){
+	const minimaxAB = (state, depth, alpha, beta) => {
 	}
 
-	return minimaxAB(state, depth, -100000,100000)
+	return minimaxAB(state, depth, -100000,100000);
 }
 
 //ecxport default {makeMove, minimax, heuristic};

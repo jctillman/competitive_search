@@ -1,10 +1,10 @@
-var State = require('./game_logic/state.js');
-var minimaxLib = require('./minimax.js')
-var expect = require('chai').expect;
+const State = require('./game_logic/state.js');
+const minimaxLib = require('./minimax.js')
+const expect = require('chai').expect;
 
-var minimax = minimaxLib.minimax;
-var makeMove = minimaxLib.makeMove;
-var heuristic = minimaxLib.heuristic;
+const minimax = minimaxLib.minimax;
+const makeMove = minimaxLib.makeMove;
+const heuristic = minimaxLib.heuristic;
 
 /* 
    A heuristic takes as input some particular game state.
@@ -28,7 +28,7 @@ describe("Testing some basic functionality for the heuristics", function(){
 
 	/*First off, this function should return some kind of number.*/
 	it("Returns a number after being given a state", function(){
-		var s = new State();
+		const s = new State();
 		expect(typeof (heuristic(s, 'x')) == 'number').to.equal(true);
 		expect(typeof (heuristic(s, 'o')) == 'number').to.equal(true);
 	});
@@ -42,8 +42,8 @@ describe("Testing some basic functionality for the heuristics", function(){
 	   multiplied by -1.*/ 
 
 	it("Returns the negative of the value for one player when maximizing player is switched", function(){
-		for(var x = 0; x < 100; x++){
-			var s = new State();
+		for(let x = 0; x < 100; x++){
+			let s = new State();
 			for(var z = 0; z < 7; z++){
 				s = s.move( Math.floor(Math.random() * s.width ) )
 			}
@@ -57,28 +57,28 @@ describe("Testing some basic functionality for the heuristics", function(){
 	   together than 'o' does. */
 	it("It returns a higher score when 'x' has two in a single line, and 'o' has two disconnected", function(){
 		//Make a new game state
-		var s = new State();
+		let s = new State();
 		s = s.move(1)  //X moves
 		s = s.move(5)  //O moves
-		var lower = heuristic(s, 'x')
+		let lower = heuristic(s, 'x')
 		s = s.move(1)  //X moves
 		s = s.move(0)  //O moves
-		var higher = heuristic(s, 'x')
+		let higher = heuristic(s, 'x')
 		expect(typeof lower == 'number').to.equal(true);
 		expect(typeof higher == 'number').to.equal(true);
 		expect(lower < higher).to.equal(true);
 	});
 
 	it("It returns a higher score when 'x' has three in a single line, and 'o' has two connected, and one not connected", function(){
-		var s = new State();
+		let s = new State();
 		s = s.move(1)  //X moves
 		s = s.move(0)  //O moves
 		s = s.move(1)  //X moves
 		s = s.move(0)  //O moves
-		var lower = heuristic(s, 'x')
+		let lower = heuristic(s, 'x')
 		s = s.move(1)  //X moves
 		s = s.move(5)  //O moves
-		var higher = heuristic(s, 'x');
+		let higher = heuristic(s, 'x');
 		expect(typeof lower == 'number').to.equal(true);
 		expect(typeof higher == 'number').to.equal(true);
 		expect(lower < higher).to.equal(true);
@@ -86,16 +86,16 @@ describe("Testing some basic functionality for the heuristics", function(){
 
 	it("It returns a higher score when 'x' has four in a single line, and 'o' doens'true", function(){
 		//Make a new game state
-		var s = new State();
+		let s = new State();
 		s = s.move(0)  //X moves
 		s = s.move(1)  //O moves
 		s = s.move(0)  //X moves
 		s = s.move(1)  //O moves
 		s = s.move(0)  //X moves
 		s = s.move(1)  //O moves
-		var lower = heuristic(s, 'x')
+		let lower = heuristic(s, 'x')
 		s = s.move(0)  //X moves
-		var higher = heuristic(s, 'x');
+		let higher = heuristic(s, 'x');
 		expect(typeof lower == 'number').to.equal(true);
 		expect(typeof higher == 'number').to.equal(true);
 		expect(lower < higher).to.equal(true);
@@ -115,13 +115,13 @@ describe('Testing some basic functions in the minimax evaluation function', func
 	   simply be calling the heuristic function and never call itself recursivly. */
 
 	it('Returns simply the value of the heuristic function when depth is set to 0', function(){
-		for(var x = 0; x < 10; x++){
-			var s = new State();  //Make a new game state
-			for(var z = 0; z < 7; z++){  //Make some random moves
+		for(let x = 0; x < 10; x++){
+			let s = new State();  //Make a new game state
+			for(let z = 0; z < 7; z++){  //Make some random moves
 				s = s.move( Math.floor(Math.random() * s.width ) )
 			}
-			var heuristicValue = heuristic(s, 'x');
-			var minimaxValue = minimax(s, 0, 'x');
+			let heuristicValue = heuristic(s, 'x');
+			let minimaxValue = minimax(s, 0, 'x');
 			expect(typeof heuristicValue == 'number').to.equal(true);
 			expect(typeof minimaxValue == 'number').to.equal(true);
 			expect(heuristicValue == minimaxValue).to.equal(true);
@@ -134,12 +134,12 @@ describe('Testing some basic functions in the minimax evaluation function', func
 	   call itself recursively on. */
 
 	it('Also returns simply the value of the heuristic function when there are no moves left to make', function(){
-		for(var x = 0; x < 5; x++){
+		for(let x = 0; x < 5; x++){
 			//Make a new game state, with a board height of 1 so
 			//that s.nextStates or s.legalMoves returns an array 
 			//of length zero after we've filled the first 
 			//and last row entirely.
-			var s = new State({height: 1});
+			let s = new State({height: 1});
 			s = s.move(0)
 			s = s.move(1)
 			s = s.move(2)
@@ -147,8 +147,8 @@ describe('Testing some basic functions in the minimax evaluation function', func
 			s = s.move(4)
 			s = s.move(5)
 			s = s.move(6)
-			var heuristicValue = heuristic(s, 'x');
-			var minimaxValue = minimax(s, 32, 'x');
+			let heuristicValue = heuristic(s, 'x');
+			let minimaxValue = minimax(s, 32, 'x');
 			expect(typeof heuristicValue == 'number').to.equal(true);
 			expect(typeof minimaxValue == 'number').to.equal(true);
 			expect(heuristicValue == minimaxValue).to.equal(true);;
@@ -160,12 +160,12 @@ describe('Testing some basic functions in the minimax evaluation function', func
 	   it does need to call itself recursively. */
 	it("It returns values of some kind when there's depth involved", function(){
 
-		for(var x = 0; x < 3; x++){
-			var s = new State();
+		for(let x = 0; x < 3; x++){
+			let s = new State();
 			for(var m = 0; m < 6; m++){
 				s = s.move(Math.floor(Math.random()*7));
 			}
-			var val = minimax(s, Math.floor(Math.random()*2), 'x');
+			let val = minimax(s, Math.floor(Math.random()*2), 'x');
 			expect(typeof val == 'number').to.equal(true);;
 		}
 
