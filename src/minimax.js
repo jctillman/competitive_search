@@ -52,6 +52,10 @@ const makeMove = (state) => {
 
 		const potentialState = state.move(legalMove)
 
+		// Sets the playerMoving to be the maximizer.
+		// This variable gets handed down in the recursive
+		// minimax call unchanged.
+
 		const stateValue = minimax(potentialState, depth, playerMoving);
 		//const stateValue = minimaxAlphaBetaWrapper(potentialState, depth, playerMoving)
 
@@ -68,8 +72,7 @@ const makeMove = (state) => {
 
 
 /*
-The function "heuristic" is one you must (mostly)
-write.
+You must write the function "heuristic".
 
 Input: state, maximizingPlayer.  The state will be
 a state object.  The maximizingPlayer will be either
@@ -85,10 +88,6 @@ like this "state.numLines(2,'x')" and returns the
 number of lines of that length which that player
 has.  That is, it returns the number of contiguous linear
 pieces of that length that that player has.
-
-This is useful because, generally speaking, it is better
-to have lots of lines that fewer lines, and much better
-to have longer lines than shorter lines.
 
 You'll want to pass the tests defined in minimax_specs.js.
 */
@@ -107,7 +106,7 @@ const heuristic = (state, maximizingPlayer) => {
 
 
 /*
-The function "minimax" is one you must write.
+You must write the function "minimax".
 
 Input: state, depth, maximizingPlayer.  The state is
 an instance of a state object.  The depth is an integer
@@ -160,5 +159,4 @@ const minimaxAlphaBetaWrapper = (state, depth, maximizingPlayer) => {
 	return minimaxAB(state, depth, -100000,100000);
 }
 
-//ecxport default {makeMove, minimax, heuristic};
 module.exports = {makeMove, minimax, heuristic};
