@@ -32,7 +32,7 @@ const makeMove = (state) => {
 	// just call state.move(someMove).  This returns
 	// the board state after that move has been made.
 	// It autmatically switches the player whose
-	// move it is, and so on and so forth
+	// move it is, adds the piece to the board, etc.
 	//
 	// Note that state is immutable; invoking state.move
 	// does NOT change the original state, but
@@ -41,9 +41,9 @@ const makeMove = (state) => {
 
 
 	// The following is the guts of the make-move function.
-	// The function max(arr, func) returns the element
-	// from the array "arr" which has the greatest value
-	// according to the function "func"
+	// It evaluates each possible successor state with
+	// minimax, and performs the move that leads to the best
+	// state.
 	const depth = 4;
 
 	let bestMoveIndex = null;
