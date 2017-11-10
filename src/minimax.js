@@ -1,25 +1,21 @@
 
 /*
  *
- *
 The function "makeMove" is already written for you.
 You do not need to modify it, but you should read it.
-
-It will choose moves intelligently once minimax,
-which it invokes, evaluates different board-states
-correctly.  It is the ONLY function invoked when
-you play against the computer after starting up
-the server.
+It will choose moves intelligently once minimax works.
 
 Input: A state object, representing the Connect 4 board.
 
 Output: Returns an integer indicating the column
 where the piece will be dropped.
-
 */
 
 const makeMove = (state) => {
 
+    // "state" is an object with a few methods 
+    // you might want to get o know.
+    //
 	// Find whose move it is; 'x' or 'o'
 	const playerMoving = state.nextMovePlayer;
 
@@ -35,15 +31,13 @@ const makeMove = (state) => {
 	// move it is, adds the piece to the board, etc.
 	//
 	// Note that state is immutable; invoking state.move
-	// does NOT change the original state, but
-	// returns a new one.
-	const newState = state.move(allLegalMoves[0]);
+    // returns new state without altering the old one.
+    const someNewState = state.move(allLegalMoves[0]);
 
 
 	// The following is the guts of the make-move function.
 	// It evaluates each possible successor state with
-	// minimax, and performs the move that leads to the best
-	// state.
+	// minimax, and move that leads to the best
 	const depth = 4;
 
 	let bestMoveIndex = null;
@@ -53,11 +47,8 @@ const makeMove = (state) => {
 		const potentialState = state.move(legalMove)
 
 		// Sets the playerMoving to be the maximizer.
-		// This variable gets handed down in the recursive
-		// minimax call unchanged.
-
+        // Should be handed down by minimax UNCHANGED
 		const stateValue = minimax(potentialState, depth, playerMoving);
-		//const stateValue = minimaxAlphaBetaWrapper(potentialState, depth, playerMoving)
 
 		if (stateValue > bestMoveValue || bestMoveValue === null){
 			bestMoveIndex = i;
@@ -82,7 +73,7 @@ is signified by positive numbers.
 Output: A number evaluating how good the state is from
 the perspective of the player who is maximizing.
 
-A useful method on state here would be state.numLines.
+A VERY USEFUL method on state here would be state.numLines.
 This function takes an integer and a player
 like this "state.numLines(2,'x')" and returns the
 number of lines of that length which that player
@@ -96,8 +87,13 @@ const heuristic = (state, maximizingPlayer) => {
 	//This is how you can retrieve the minimizing player.
     const minimizingPlayer = (maximizingPlayer == 'x') ? 'o' : 'x';
 
-	//An example.
-    const linesOfLengthTwoForX = state.numLines(2, 'x')
+    // An example.
+    // Hm, maybe one could make a heuristic that uses
+    // state.numLines, and adds weighted values... of something...
+    // for the maximizer, and then substracts the same values for the
+    // minimizer?
+    const linesOfLengthTwoForMax = state.numLines(2, maximizingPlayer)
+    const linesOfLengthTwoForMin = state.numLines(2, minimizingPlayer)
 
     //Your code here.  Don't return random, obviously.
 	return Math.random()
@@ -128,7 +124,14 @@ const minimax = (state, depth, maximizingPlayer) => {
 	var minimizingPlayer = (maximizingPlayer == 'x') ? 'o' : 'x';
 	var possibleStates = state.nextStates();
 	var currentPlayer = state.nextMovePlayer;
-	//Your code here.
+    // Your code here.
+    // Minimax is recursive, so you'll want to have
+    // something like this:
+    // if ( base_case_is_happening ){
+    //      return base case values with heuristic
+    // } else {
+    //      return non-base case
+    // }
 	return Math.random();
 }
 
