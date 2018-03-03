@@ -1,30 +1,25 @@
-const webpack = require('webpack');
-const path = require('path');
-const appSrc = path.join(__dirname, 'src');
-
 module.exports = {
-  entry: './src/index.js',
+  entry: [
+    './src/index.js'
+  ],
   output: {
-    path: './public',
+   path: __dirname + '/public',
+    publicPath: '/',
     filename: 'bundle.js'
   },
-  context: __dirname,
-  resolve: {
-    root: path.join(__dirname, 'node_modules')
-  },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx)$/,
-        include: appSrc,
-        loader: 'babel',
-        query: {
-          presets: ['es2015', 'react']
-        }
+        exclude: /node_modules/,
+        use: ['babel-loader']
       }
     ]
   },
-  plugins: [
-    new webpack.SourceMapDevToolPlugin()
-  ]
+  resolve: {
+    extensions: ['*', '.js', '.jsx']
+  },
+  devServer: {
+    contentBase: './public'
+  }
 };
