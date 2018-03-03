@@ -2,7 +2,8 @@
   "name": "competitive-search",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development"
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "test": "mocha src/minimax_specs.js"
   },
   "babel": {
     "presets": [
