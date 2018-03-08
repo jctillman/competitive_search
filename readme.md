@@ -12,15 +12,11 @@ The contents of this introduction, and of the workshop in general, take for gran
 
 1. Git clone this repo, cd into it, and "npm install".
 
-2. If you haven't globally installed "webpack" and "webpack-dev-server" then "npm install -g webpack" and "npm install -g webpack-dev-server".
-
-3. If you haven't globally installed "mocha" then "npm install -g mocha".
-
 2. There's only one file which you'll be editing, which is "minimax.js."  IMPORTANT: Before starting to edit it, finish reading these instructions.
  
-3. To test your changes to minimax.js, "npm test."  This will fail if you have not globally installed mocha.  IMPORTANT: Passing the tests does not necessarily mean you've successfully written an intelligent agent.  You can pass the tests without actually using the minimax algorithm.  To test that your agent is really playing well, you'll need to play against your agent yourself.
+3. To test your changes to minimax.js, "npm test."  IMPORTANT: Passing the tests does not necessarily mean you've successfully written an intelligent agent.  You can pass the tests without actually using the minimax algorithm.  To test that your agent is really playing well, you'll need to play against your agent yourself.
 
-4. To play against the agent, run "npm start."  This will fail if you haven't globally installed webpack-dev-server.  If it succeeeds, it will start up a server; use a browser to go to localhost:8080 to play against the agent you've written in minimax.js.  If you start up the server before you've started writing your agent, you'll note that you're playing against a randomly-playing (i.e., extremely stupid) agent.
+4. To play against the agent, run "npm start."  It will start up a server; use a browser to go to localhost:8080 to play against the agent you've written in minimax.js.  If you start up the server before you've started writing your agent, you'll note that you're playing against a randomly-playing (i.e., extremely stupid) agent.
 
 ## Advice
 
