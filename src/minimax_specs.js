@@ -2,9 +2,10 @@ const State = require('./game_logic/state.js');
 const minimaxLib = require('./minimax.js')
 const expect = require('chai').expect;
 
-const minimax = minimaxLib.minimax;
-const makeMove = minimaxLib.makeMove;
 const heuristic = minimaxLib.heuristic;
+const isBaseCase = minimaxLib.isBaseCase; 
+const minimax = minimaxLib.minimax;
+const minimaxAlphaBeta = minimaxLib.minimaxAlphaBeta;
 
 /* 
    A heuristic takes as input some particular game state.
@@ -104,9 +105,40 @@ describe("Testing some basic functionality for the heuristics", function(){
 });
 
 
+describe('"isBaseCase" returns the correct values', function(){
+
+    it('Returns "true" when depth is zero, false otherwise', function(){
+        let s = new State();  //Make a new game state
+        expect(isBaseCase(s, 0)).to.equal(true);
+        expect(isBaseCase(s, 1)).to.equal(false);
+        expect(isBaseCase(s, 2)).to.equal(false);
+    });
+
+    it('Returns "true" when someone has won, false otherwise', function() {
+		//Make a new game state
+		let s = new State();
+        // Build a game state like this
+        // _ _ _ _ _ _ _
+        // x _ _ _ _ _ _
+        // x _ _ _ _ _ _
+        // x _ _ _ _ _ _
+        // x o o o _ _ _
+		s = s.move(0)  //X moves
+		s = s.move(1)  //O moves
+		s = s.move(0)  //X moves
+		s = s.move(2)  //O moves
+		s = s.move(0)  //X moves
+		const noVictory = s.move(3)  //O moves
+		const victory = noVictory.move(0)  //X moves
+        expect(isBaseCase(noVictory, 2)).to.equal(false);
+        expect(isBaseCase(victory, 2)).to.equal(true);
+    });
+
+});
 
 
-describe('Testing some basic functions in the minimax evaluation function', function(){
+
+describe('"minimax" returns the correct values', function(){
 
 	/* The depth which is passed to the minimax function tells it how many 
 	   layers down to go.
@@ -133,7 +165,7 @@ describe('Testing some basic functions in the minimax evaluation function', func
 	   heuristic function, because there are no child states to
 	   call itself recursively on. */
 
-	it('Also returns simply the value of the heuristic function when there are no moves left to make', function(){
+	it('Returns simply the value of the heuristic function when there are no moves left to make', function(){
 		for(let x = 0; x < 5; x++){
 			//Make a new game state, with a board height of 1 so
 			//that s.nextStates or s.legalMoves returns an array 
@@ -168,15 +200,7 @@ describe('Testing some basic functions in the minimax evaluation function', func
 			let val = minimax(s, Math.floor(Math.random()*2), 'x');
 			expect(typeof val == 'number').to.equal(true);;
 		}
-
 	});
-
-	/* And sadly, here is where the test specs end.
-	   
-	   To see if your algorithm really working any more--that is,
-	   to see if it's making intelligent decisions--you'll need
-	   to play it.  "npm start" and go to localhost:8888 to play 
-	   against your algorithm.
-     */
+    
 
 });
