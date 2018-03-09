@@ -164,7 +164,6 @@ describe('"minimax" returns the correct values', function(){
 	   minimax function should also return merely the value of the
 	   heuristic function, because there are no child states to
 	   call itself recursively on. */
-
 	it('Returns simply the value of the heuristic function when there are no moves left to make', function(){
 		for(let x = 0; x < 5; x++){
 			//Make a new game state, with a board height of 1 so
@@ -188,9 +187,8 @@ describe('"minimax" returns the correct values', function(){
 	});
 
 
-	/* It should also return some kind of value when you call it and
-	   it does need to call itself recursively. */
-	it("It returns values of some kind when there's depth involved", function(){
+    /* It returns numeric values when depth is involved */
+    it("Returns numeric values of some kind when there's depth involved", function(){
 
 		for(let x = 0; x < 3; x++){
 			let s = new State();
@@ -202,5 +200,29 @@ describe('"minimax" returns the correct values', function(){
 		}
 	});
     
+    /* This should pass if your logic is correct, 
+     * although reading the spec probably won't
+     * help you with the logic. */
+	it("Returns correct values for specific cases, starting in the beginning", function(){
+        
+        let s = new State();
+        s = s.move(2)
+        expect(minimax(s,1,'x')).to.equal(0);
+        expect(minimax(s,2,'x')).to.equal(10000);
+
+	});
+    
+    /* This should pass if your logic is correct, 
+     * although reading the spec probably won't
+     * help you with the logic. */
+    it("Returns correct values for specific cases, starting in the middle", function(){
+        let s = new State();
+        s = s.move(2);
+        s = s.move(3);
+        s = s.move(3);
+        s = s.move(4);
+        expect(minimax(s,1,'x')).to.equal(20000);
+        expect(minimax(s,2,'x')).to.equal(-20000);
+	});
 
 });
