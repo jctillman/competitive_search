@@ -112,6 +112,9 @@ const minimax = (state, depth, maximizingPlayer) => {
         // Invoke heuristic
     } else {
         const possibleStates = state.nextStates();
+        const minimizingPlayer = maximizingPlayer === 'x' ? 'o' : 'x';
+        const currentPlayer = state.nextMovePlayer;
+
         // Reduce to further
         // invocations of minimax.
     }
