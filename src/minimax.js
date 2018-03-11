@@ -111,10 +111,12 @@ const minimax = (state, depth, maximizingPlayer) => {
     if (isBaseCase(state, depth)) {
         // Invoke heuristic
     } else {
+        // Possible states is an array of future states, of 
+        // the same kind that gets passed into the "state"
+        // paramter in minimax.
         const possibleStates = state.nextStates();
         const minimizingPlayer = maximizingPlayer === 'x' ? 'o' : 'x';
         const currentPlayer = state.nextMovePlayer;
-
         // Reduce to further
         // invocations of minimax.
     }
