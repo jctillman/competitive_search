@@ -20,9 +20,8 @@ The contents of this introduction, and of the workshop in general, take for gran
 
 ## Advice
 
-1. There are all sorts of correct answers regarding the substance of the heuristic function.  Make something up; so long as it passes the tests, it will probably work with minimax.  Remember that the basic idea is just to roughly evaluate how good the state is.
+1. Any calls to "state" objects that you might need to make have already been made, with the value stored in some variable.
 
-2. Minimax itself is a bit more rigid, but it only takes a few lines to implement.
+2. Minimax alpha-beta pruning is hard, so don't feel discouraged if you have difficulty with it.  It is only a few more lines than minimax itself, though, so if you're writing a lot you're probably going wrong.
 
-3. Minimax alpha-beta pruning is a little harder to visualize, so don't feel discouraged if you have difficulty with it.  It is only a few more lines than minimax itself, though, so if you're writing a lot you're probably going wrong.
 
