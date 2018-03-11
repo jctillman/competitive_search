@@ -1,43 +1,51 @@
-//
-// MINIMAX.JS
-// 
-// Only file you need to modify to pass
-// all tests.
+/*
+ * MINIMAX.JS
+ *
+ * This is the only file you need
+ * to modify to pass all tests.
+ * 
+ * Contents:
+ * 1. minimaxWrapper: Pre-written
+ * 2. heuristic: Pre-written
+ * 3. baseCase: Must complete
+ * 4. minimax: Must complete
+ * 5. minimaxAlphaBeta: Must complete
+ */
 
-// This is the actual point-of-entry.
-// The game-playing functions call 
-// "minimaxWrapper", and expect to get
-// back a number evaluating how good a state is.
 
+/*
+ * minimaxWrapper
+ *
+ * This is the only function called when
+ * playing against your algorithm.
+ *
+ * To switch from playing against the
+ * 'minimax' to 'minimaxAlphaBeta'
+ * algorithm, swap them below.
+ */
 const DEPTH = 3;
 const minimaxWrapper = (state, maximizingPlayer) =>
     minimax(state, DEPTH, maximizingPlayer);
 
-// For the above to work, obviously we want
-// to write minimax.  The following will guide
-// you through the components of that.
-
-
 
 /*
-HEURISTIC FUNCTION
-
-The "heuristic" function is pre-written.
-Spend a little time to understand it.
-You will need to unvoke it in "minimax" during
-the base case.
-
-Input: state, maximizingPlayer.
-
-The state will be a state object.
-
-The maximizingPlayer will be either an 'x' or an
-'o', and is the player whose advantage
-is signified by positive numbers.
-
-Output: A number evaluating how good the state is from
-the perspective of the player who is maximizing.
-*/
+ * heuristic
+ *
+ * The 'heuristic' function returns a number
+ * evaluation how good a state is, from the
+ * perspective of the maximizing player.
+ * You will need to invoke it in minimax.
+ * Spend a little time trying to understand
+ * it.
+ *
+ * Input:
+ *  state: Object representing state.
+ *  maximizingPlayer: 'x' or 'o'.
+ * Output:
+ *  Number evaluating how good state is,
+ *  from perspective of maximizing
+ *  player.
+ */
 const heuristic = (state, maximizingPlayer) => {
 
 	//This is how you can retrieve the minimizing player.
@@ -62,52 +70,60 @@ const heuristic = (state, maximizingPlayer) => {
     const advantageFunction = player => [2,3,4].reduce((total, numLines) =>
         total + state.numLines(numLines, player) * Math.pow(100, numLines), 0);
 
-    // Then for the heuristic, we just return the advantage of one player,
-    // less the advantage of another.
+    // Then for the heuristic, we just return the advantage
+    // of the maximizing player, less the advantage of the
+    // minimizing player.
     return advantageFunction(maximizingPlayer) - advantageFunction(minimizingPlayer);
 }
 
 /*
-You must write the function "baseCase."
-
-Minimax is recursive.  When do we stop
-recursing or not?  
-
-This takes a state, and a depth, and returns
-true if you have reacted a depth of zero
-or the state has no successor states.  It
-returns false otherwise.
-*/
+ * isBaseCase
+ *
+ * Should return true if we should no
+ * longer recurse through minimax. So
+ * if you have reached a depth of zero or
+ * there are no possible successor states,
+ * it should return true.
+ *
+ * ANY INFORMATION YOU NEED from
+ * the "state" object is already pulled
+ * from it.
+ *
+ */
 const isBaseCase = (state, depth) => {
-    const possibleStates = state.nextStates();
+    const possibleSuccessorStates = state.nextStates();
+    const numberPossibleSuccessorStates = possibleSuccessorStates.length;
     // Your code here.
 }
 
 /*
-You must write the function "minimax".
-
-Input: state, depth, maximizingPlayer.
-
-The state is an instance of a state object.
-
-The depth is an integer greater than zero;
-when it is zero, the minimax function should
-return the value of the heuristic function.
-
-Output: Returns a number evaluating the state, just
-like heuristic does.
-
-*/
+ * minimax
+ *
+ * Input:
+ *   state: Object representing state
+ *   depth: How much deeper one should recurse
+ *   maximizingPlayer: 'x' or 'o'
+ * Output:
+ *   Number evaluating state, just like
+ *   heuristic does.
+ */
 const minimax = (state, depth, maximizingPlayer) => {
     if (isBaseCase(state, depth)) {
         // Invoke heuristic
     } else {
         const possibleStates = state.nextStates();
-        // Reduce further
+        // Reduce to further
+        // invocations of minimax.
     }
 }
 
 
+/*
+ * minimaxAlphaBeta
+ *
+ * Input and output are same as for minimax.
+ * Th
+ */
 const minimaxAlphaBeta = (state, depth, maximizingPlayer) => {
 
 	const minimaxAlphaBetaInner = (state, depth, alpha, beta) => {
@@ -119,7 +135,7 @@ const minimaxAlphaBeta = (state, depth, maximizingPlayer) => {
         }
 	}
 
-	return minimaxAlphaBetaInner(state, depth, -100000,100000);
+	return minimaxAlphaBetaInner(state, depth, -10000000,10000000);
 }
 
 module.exports = {

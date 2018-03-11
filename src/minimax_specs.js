@@ -14,14 +14,16 @@ const minimaxAlphaBeta = minimaxLib.minimaxAlphaBeta;
    More specifically, the heuristic for a zero-sum game -- that is,
    a game where any gain by one side is loss for the other side --
    will return a higher positive number the better the game is
-   for the maximizing player, and a lower negative number the better the game
-   is for the minimizing player.
+   for the maximizing player, and a lower negative number the better
+   the game is for the minimizing player.
 
    Specifically, this concrete function will take as input
-   1. An instance of the class "State" -- that is, a description of the current state of the board.
-   2. The current player who is the maximizing player -- the one who is currently
-      trying to maximize the score, unlike the other who is trying to minimize.
-      This will either be an 'x' string or an 'o' string.
+   1. An instance of the class "State" -- that is, a description of
+      the current state of the board.
+   2. The current player who is the maximizing player -- the one who
+      is currently trying to maximize the score, unlike the other
+      who is trying to minimize.  This will either be an 'x' string
+      or an 'o' string.
 
       It will return a positive or negative number. 
  */
@@ -200,9 +202,8 @@ describe('"minimax" returns the correct values', function(){
 		}
 	});
     
-    /* This should pass if your logic is correct, 
-     * although reading the spec probably won't
-     * help you with the logic. */
+    /* This should pass if your logic is correct,
+     * although reading this won't help you with the logic. */
 	it("Returns correct values for specific cases, starting in the beginning", function(){
         
         let s = new State();
