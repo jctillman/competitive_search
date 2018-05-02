@@ -4,7 +4,7 @@
 
 This is a quick introduction to minimax search through the game Connect 4.
 
-When you you have completed this introduction, minimax agent which you have created will probably be able to beat you at Connect 4.
+When you you have completed this introduction, the minimax agent which you have created will should be able to beat you at Connect 4.
 
 The contents of this introduction, and of the workshop in general, take for granted that you've paid at least a little bit of attention to the lecture.
 
@@ -20,7 +20,7 @@ The contents of this introduction, and of the workshop in general, take for gran
 
 ## Advice
 
-1. Any calls to "state" objects that you might need to make have already been made, with the value stored in some variable.
+1. Any calls to "state" methods that you might need to make have already been made, with the value stored in some variable.  You do NOT need to make any calls to "state.{anything}()" that have not already been made.
 
 2. Minimax alpha-beta pruning is hard, so don't feel discouraged if you have difficulty with it.  It is only a few more lines than minimax itself, though, so if you're writing a lot you're probably going wrong.
 
