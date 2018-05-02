@@ -17,7 +17,7 @@ const minimaxAlphaBeta = minimaxLib.minimaxAlphaBeta;
    for the maximizing player, and a lower negative number the better
    the game is for the minimizing player.
 
-   Specifically, this concrete function will take as input
+   Most specifically, this concrete function will take as input
    1. An instance of the class "State" -- that is, a description of
       the current state of the board.
    2. The current player who is the maximizing player -- the one who
@@ -36,12 +36,7 @@ describe("Testing some basic functionality for the heuristics", function(){
 		expect(typeof (heuristic(s, 'o')) == 'number').to.equal(true);
 	});
 
-	/* Second, remember that the "maximizing player" and the "minimizing player"
-	   are only maximizing and minimizing players by convention.  They are a 
-	   feature of the map, and not the territory; of how we're looking at 
-	   the game, and not the game itself.
-
-	   So if we switch the players, we should get exactly the same value, except
+	/* Second, if we switch the players, we should get exactly the same value, except
 	   multiplied by -1.*/ 
 
 	it("Returns the negative of the value for one player when maximizing player is switched", function(){
@@ -54,10 +49,8 @@ describe("Testing some basic functionality for the heuristics", function(){
 		}
 	});
 
-	/* The rest of these all are basically checking to see if 
-	   the program returns some kind of reasonable values in cases when, although
-	   there are equal numbers of pieces on the board, 'x' has more in a line 
-	   together than 'o' does. */
+	/* Checking to see if having 'x's together returns more than
+     * together than 'o's separately does. */
 	it("It returns a higher score when 'x' has two in a single line, and 'o' has two disconnected", function(){
 		//Make a new game state
 		let s = new State();
@@ -202,10 +195,10 @@ describe('"minimax" returns the correct values', function(){
 		}
 	});
     
-    /* This should pass if your logic is correct,
+    /* This should pass if your logic is correct, and you use
+     * the generic heuristic,
      * although reading this won't help you with the logic. */
 	it("Returns correct values for specific cases, starting in the beginning", function(){
-        
         let s = new State();
         s = s.move(2)
         expect(minimax(s,1,'x')).to.equal(0);
@@ -213,7 +206,8 @@ describe('"minimax" returns the correct values', function(){
 
 	});
     
-    /* This should pass if your logic is correct, 
+    /* This should pass if your logic is correct, and you
+     * used the generic heuristic,
      * although reading the spec probably won't
      * help you with the logic. */
     it("Returns correct values for specific cases, starting in the middle", function(){

@@ -72,7 +72,7 @@ const heuristic = (state, maximizingPlayer) => {
     // of lengths 2, 3, and 4, weighted very strongly according
     // to their length.
     const advantageFunction = player => [2,3,4].reduce((total, numLines) =>
-        total + state.numLines(numLines, player) * Math.pow(200, numLines), 0);
+        total + state.numLines(numLines, player) * Math.pow(100, numLines), 0);
 
     // Then for the heuristic, we just return the advantage
     // of the maximizing player, less the advantage of the
