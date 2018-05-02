@@ -2,16 +2,18 @@
  * MINIMAX.JS
  *
  * This is the only file you need
- * to modify to pass all tests.
+ * to modify to pass the tests.
+ *
+ * You VERY DEFINITELY should read
+ * the pre-written functions.
  * 
  * Contents:
- * 1. minimaxWrapper: Pre-written
- * 2. heuristic: Pre-written
- * 3. baseCase: Must complete
- * 4. minimax: Must complete
+ * 1. minimaxWrapper:   Pre-written
+ * 2. heuristic:        Pre-written
+ * 3. baseCase:         Must complete
+ * 4. minimax:          Must complete
  * 5. minimaxAlphaBeta: Must complete
  */
-
 
 /*
  * minimaxWrapper
@@ -21,18 +23,18 @@
  *
  * To switch from playing against the
  * 'minimax' to 'minimaxAlphaBeta'
- * algorithm, swap them below.
+ * algorithm, swap the function
+ * called below.
  */
 const DEPTH = 3;
 const minimaxWrapper = (state, maximizingPlayer) =>
     minimax(state, DEPTH, maximizingPlayer);
 
-
 /*
  * heuristic
  *
  * The 'heuristic' function returns a number
- * evaluation how good a state is, from the
+ * evaluating how good a state is, from the
  * perspective of the maximizing player.
  * You will need to invoke it in minimax.
  * Spend a little time trying to understand
@@ -44,7 +46,9 @@ const minimaxWrapper = (state, maximizingPlayer) =>
  * Output:
  *  Number evaluating how good state is,
  *  from perspective of maximizing
- *  player.
+ *  player. Positive, if to the advantage
+ *  of the maximizing player; negative,
+ *  if to their disadvantage.
  */
 const heuristic = (state, maximizingPlayer) => {
 
@@ -68,7 +72,7 @@ const heuristic = (state, maximizingPlayer) => {
     // of lengths 2, 3, and 4, weighted very strongly according
     // to their length.
     const advantageFunction = player => [2,3,4].reduce((total, numLines) =>
-        total + state.numLines(numLines, player) * Math.pow(100, numLines), 0);
+        total + state.numLines(numLines, player) * Math.pow(200, numLines), 0);
 
     // Then for the heuristic, we just return the advantage
     // of the maximizing player, less the advantage of the
@@ -94,6 +98,8 @@ const isBaseCase = (state, depth) => {
     const possibleSuccessorStates = state.nextStates();
     const numberPossibleSuccessorStates = possibleSuccessorStates.length;
     // Your code here.
+    // Only needs to use the two
+    // variables declared above.
 }
 
 /*
@@ -127,7 +133,6 @@ const minimax = (state, depth, maximizingPlayer) => {
  * minimaxAlphaBeta
  *
  * Input and output are same as for minimax.
- * Th
  */
 const minimaxAlphaBeta = (state, depth, maximizingPlayer) => {
 
@@ -140,7 +145,7 @@ const minimaxAlphaBeta = (state, depth, maximizingPlayer) => {
         }
 	}
 
-	return minimaxAlphaBetaInner(state, depth, -10000000,10000000);
+	return minimaxAlphaBetaInner(state, depth, -1000000000, 1000000000);
 }
 
 module.exports = {
