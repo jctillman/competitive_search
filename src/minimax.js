@@ -98,8 +98,6 @@ const isBaseCase = (state, depth) => {
     const possibleSuccessorStates = state.nextStates();
     const numberPossibleSuccessorStates = possibleSuccessorStates.length;
     // Your code here.
-    // Only needs to use the two
-    // variables declared above.
 }
 
 /*
