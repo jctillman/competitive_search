@@ -4,7 +4,7 @@
  * This is the only file you need
  * to modify to pass the tests.
  *
- * You VERY DEFINITELY should read
+ * Note that you should read
  * the pre-written functions.
  * 
  * Contents:
