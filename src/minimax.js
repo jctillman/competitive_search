@@ -118,6 +118,10 @@ const minimax = (state, depth, maximizingPlayer) => {
         // Possible states is an array of future states, of 
         // the same kind that gets passed into the "state"
         // paramter in minimax.
+        //
+        // ANY INFORMATION YOU NEED from
+        // the "state" object is already
+        // pulled from it.
         const possibleStates = state.nextStates();
         const minimizingPlayer = maximizingPlayer === 'x' ? 'o' : 'x';
         const currentPlayer = state.nextMovePlayer;
